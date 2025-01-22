@@ -21,11 +21,14 @@ library
         , Jeep.Control.Monad.MonadRandom
         , Jeep.Data.Foldable
         , Jeep.Data.Graph.FGL
+        , Jeep.Logic.AU
+        , Jeep.Logic.Term        
         , Jeep.Statistics.Statistics
     -- other-modules:
     -- other-extensions:
     build-depends: 
         base
+        , containers
         , fgl
         , MonadRandom
         , semirings
