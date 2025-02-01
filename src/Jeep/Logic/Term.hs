@@ -6,7 +6,6 @@ import Data.List
 import Data.Maybe
 
 import qualified Data.Map as M
-import qualified Data.IntMap as IM
 
 -----------------------------------
 

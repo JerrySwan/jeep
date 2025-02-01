@@ -1,7 +1,6 @@
 module Jeep.Data.Graph.FGL where
 
 -----------------------------------
-
 import Data.Graph.Inductive.Graph
 
 -----------------------------------
