@@ -17,8 +17,10 @@ common warnings
 library
     import: warnings
     exposed-modules:
-        Jeep.Algebra.Polynomial
-        , Jeep.Algebra.Vector
+        Jeep.Algebra.Linear.V
+        , Jeep.Algebra.Linear.V2
+        , Jeep.Algebra.Linear.V3        
+        , Jeep.Algebra.Polynomial
         , Jeep.Control.Control        
         , Jeep.Control.Exception.Contract        
         , Jeep.Control.Monad.MonadRandom
