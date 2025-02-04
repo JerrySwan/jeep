@@ -36,7 +36,7 @@ negate v = V2 (SR.negate (_x v)) (SR.negate (_y v))
 
 -----------------------------------  
 
-sqrNorm2 :: SR.Ring a => V2 a -> V2 a -> a  
+sqrNorm2 :: SR.Ring a => V2 a -> a  
 sqrNorm2 v = SR.plus (sqr (_x v)) (sqr (_y v)) where
   sqr x = SR.times x x
 
