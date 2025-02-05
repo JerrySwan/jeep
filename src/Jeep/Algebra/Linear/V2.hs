@@ -8,6 +8,9 @@ import qualified Data.Semiring as SR
 
 data V2 a = V2 { _x :: a, _y :: a }  deriving (Show,Eq,Ord)
 
+instance Functor V2 where
+  fmap f (V2 x y) = V2 (f x) (f y)
+
 -----------------------------------  
 
 fromTuple :: (a,a) -> V2 a
