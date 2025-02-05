@@ -17,7 +17,8 @@ common warnings
 library
     import: warnings
     exposed-modules:
-        Jeep.Algebra.Linear.V
+        Jeep.Algebra.Linear.M
+        , Jeep.Algebra.Linear.V
         , Jeep.Algebra.Linear.V2
         , Jeep.Algebra.Linear.V3        
         , Jeep.Algebra.Polynomial
@@ -26,8 +27,10 @@ library
         , Jeep.Control.Monad.MonadRandom
         , Jeep.Data.Foldable
         , Jeep.Data.Graph.FGL
+        , Jeep.Logic        
         , Jeep.Logic.AU
         , Jeep.Logic.Term        
+        , Jeep.Numeric.Numeric        
         , Jeep.Statistics.Statistics
     -- other-modules:
     -- other-extensions:

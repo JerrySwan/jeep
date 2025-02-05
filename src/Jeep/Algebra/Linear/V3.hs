@@ -21,11 +21,13 @@ toTuple v = (_x v,_y v, _z v)
 
 -----------------------------------  
 
+plus :: SR.Semiring a => V3 a -> V3 a -> V3 a
 plus a b = V3 x' y' z' where 
   x' = SR.plus (_x a) (_x b)
   y' = SR.plus (_y a) (_y b)
   z' = SR.plus (_z a) (_z b)
 
+minus :: SR.Ring a => V3 a -> V3 a -> V3 a
 minus a b = V3 x' y' z' where 
   x' = SR.minus (_x a) (_x b)
   y' = SR.minus (_y a) (_y b)
@@ -37,6 +39,7 @@ zero = V3 SR.zero SR.zero SR.zero
 one :: SR.Semiring a => V3 a  
 one = V3 SR.one SR.one SR.one
 
+negate :: SR.Ring a => V3 a -> V3 a
 negate v = V3 (SR.negate (_x v)) (SR.negate (_y v)) (SR.negate (_z v))
 
 sqrNorm2 :: SR.Ring a => V3 a -> a  
@@ -45,5 +48,8 @@ sqrNorm2 v = SR.sum' [sqr (_x v),sqr (_y v),sqr (_z v)] where
 
 sqrEuclidianDistance :: SR.Ring a => V3 a -> V3 a -> a  
 sqrEuclidianDistance a b = sqrNorm2 (minus a b)
+
+euclidianDistance :: (Floating a, SR.Ring a) => V3 a -> V3 a -> a
+euclidianDistance x y = sqrt $ sqrEuclidianDistance x y
 
 -- End ---------------------------------------------------------------
