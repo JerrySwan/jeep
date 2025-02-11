@@ -27,6 +27,7 @@ library
         , Jeep.Control.Monad.MonadRandom
         , Jeep.Data.Foldable
         , Jeep.Data.Graph.FGL
+        , Jeep.Data.List
         , Jeep.Logic
         , Jeep.Logic.AU
         , Jeep.Logic.Term        
