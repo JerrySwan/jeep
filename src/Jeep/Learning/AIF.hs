@@ -1,4 +1,4 @@
-module Jeep.Statistics.AIF where
+module Jeep.Learning.AIF where
 
 -----------------------------------
 

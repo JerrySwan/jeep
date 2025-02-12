@@ -28,11 +28,12 @@ library
         , Jeep.Data.Foldable
         , Jeep.Data.Graph.FGL
         , Jeep.Data.List
+        , Jeep.Learning.Metrics
+        , Jeep.Learning.AIF        
         , Jeep.Logic
         , Jeep.Logic.AU
         , Jeep.Logic.Term        
         , Jeep.Numeric.Numeric
-        , Jeep.Statistics.AIF
         , Jeep.Statistics.Statistics
     -- other-modules:
     -- other-extensions:
