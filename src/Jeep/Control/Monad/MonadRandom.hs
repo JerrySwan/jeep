@@ -6,6 +6,14 @@ import Control.Monad.Random
 
 -----------------------------------
 
+uniformRandomIndex :: (MonadRandom random) => [a] -> random Int
+uniformRandomIndex xs = getRandomR (0,length xs - 1)
+
+uniformRandomElem :: (MonadRandom random) => [a] -> random a
+uniformRandomElem xs = (xs !!) <$> uniformRandomIndex xs
+
+-----------------------------------
+
 {----------------
   Adapted from:
   https://stackoverflow.com/questions/13936502/sampling-a-normal-distribution-using-control-monad-monadrandom
