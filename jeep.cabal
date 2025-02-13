@@ -21,7 +21,6 @@ library
         , Jeep.Algebra.Linear.V
         , Jeep.Algebra.Linear.V2
         , Jeep.Algebra.Linear.V3        
-        , Jeep.Algebra.Polynomial
         , Jeep.Control.Control        
         , Jeep.Control.Exception.Contract        
         , Jeep.Control.Monad.MonadRandom
@@ -42,7 +41,6 @@ library
         , containers
         , fgl
         , MonadRandom
-        , polynomial
         , semirings
     hs-source-dirs: src
     default-language: Haskell2010

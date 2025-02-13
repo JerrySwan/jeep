@@ -1,9 +1,0 @@
-packages: .
-
-source-repository-package
-    type: git
-    location: git@github.com:JerrySwan/polynomial.git
-    tag: 306104b8acde2c3e217ccb1697bed9036a04b3d2
-
--- End ---------------------------------------------------------------
-
