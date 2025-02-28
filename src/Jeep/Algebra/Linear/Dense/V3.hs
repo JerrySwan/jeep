@@ -1,0 +1,55 @@
+module Jeep.Algebra.Linear.Dense.V3 where
+
+-----------------------------------  
+
+import qualified Data.Semiring as SR
+
+-----------------------------------  
+
+data V3 a = V3 { _x :: a, _y :: a, _z :: a } deriving (Show,Eq,Ord)
+
+instance Functor V3 where
+  fmap f (V3 x y z) = V3 (f x) (f y) (f z)
+
+-----------------------------------  
+
+fromTuple :: (a,a,a) -> V3 a
+fromTuple (x,y,z) = V3 x y z
+
+toTuple :: V3 a -> (a,a,a)
+toTuple v = (_x v,_y v, _z v)
+
+-----------------------------------  
+
+vplus :: SR.Semiring a => V3 a -> V3 a -> V3 a
+vplus a b = V3 x' y' z' where 
+  x' = SR.plus (_x a) (_x b)
+  y' = SR.plus (_y a) (_y b)
+  z' = SR.plus (_z a) (_z b)
+
+vminus :: SR.Ring a => V3 a -> V3 a -> V3 a
+vminus a b = V3 x' y' z' where 
+  x' = SR.minus (_x a) (_x b)
+  y' = SR.minus (_y a) (_y b)
+  z' = SR.minus (_z a) (_z b)
+
+vzero :: SR.Semiring a => V3 a  
+vzero = V3 SR.zero SR.zero SR.zero
+
+vone :: SR.Semiring a => V3 a  
+vone = V3 SR.one SR.one SR.one
+
+vnegate :: SR.Ring a => V3 a -> V3 a
+vnegate v = V3 (SR.negate (_x v)) (SR.negate (_y v)) (SR.negate (_z v))
+
+vsqrnorm2 :: SR.Ring a => V3 a -> a  
+vsqrnorm2 v = SR.sum' [sqr (_x v),sqr (_y v),sqr (_z v)] where
+  sqr x = SR.times x x
+
+vquadrance2 :: SR.Ring a => V3 a -> V3 a -> a  
+vquadrance2 a b = vsqrnorm2 (vminus a b)
+
+vdistance2 :: (Floating a, SR.Ring a) => V3 a -> V3 a -> a
+vdistance2 x y = sqrt $ vquadrance2 x y
+
+-- End ---------------------------------------------------------------

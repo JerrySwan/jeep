@@ -17,10 +17,10 @@ common warnings
 library
     import: warnings
     exposed-modules:
-        Jeep.Algebra.Linear.M
-        , Jeep.Algebra.Linear.V
-        , Jeep.Algebra.Linear.V2
-        , Jeep.Algebra.Linear.V3        
+        Jeep.Algebra.Linear.Dense.M
+        , Jeep.Algebra.Linear.Dense.V
+        , Jeep.Algebra.Linear.Dense.V2
+        , Jeep.Algebra.Linear.Dense.V3        
         , Jeep.Control.Control        
         , Jeep.Control.Exception.Contract        
         , Jeep.Control.Monad.MonadRandom
