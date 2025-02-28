@@ -2,6 +2,10 @@ module Jeep.Algebra.Linear.Dense.M where
 
 -----------------------------------
 
+import Control.Exception
+
+import qualified Data.Map as Mp
+
 import qualified Data.Semiring as SR
 
 import Jeep.Data.List
@@ -10,6 +14,22 @@ import Jeep.Algebra.Linear.Dense.V
 -----------------------------------
 
 type M s = V (V s)
+
+-----------------------------------
+
+mnrows :: M a -> Int
+mnrows = length
+
+mvalidcols :: M a -> Bool
+mvalidcols [] = True
+mvalidcols xss = all (\xs -> length xs == length (head xss)) xss
+
+mncols :: M a -> Int
+mncols [] = 0
+mncols xss = assert (mvalidcols xss) length (head xss)
+
+isSquare :: [[a]] -> Bool
+isSquare m = mnrows m == mncols m 
 
 -----------------------------------
 
@@ -36,6 +56,8 @@ mtranspose [] = []
 mtranspose ([] : xss) = mtranspose xss
 mtranspose xss = map head xss : mtranspose (map tail xss)
 
+-----------------------------------
+
 mscale :: SR.Semiring s => s -> M s -> M s
 mscale c = map (map (SR.times c))
 
@@ -56,8 +78,32 @@ mcirculant :: V a -> M a
 mcirculant v = (\i -> rotate (-i) v)  <$> [0 .. (n-1)] where
   n = length v
 
-msquare :: [[a]] -> Bool
-msquare [] = True
-msquare xss = all (\xs -> length xs == length (head xss)) xss
+-----------------------------------
+
+mhcat :: [[a]] -> [[a]] -> [[a]]
+mhcat xss yss = 
+  assert (mnrows xss == mnrows yss) 
+  assert (mncols result == mncols xss + mnrows yss)  
+  assert (mnrows result == mnrows xss) result where
+  result = mtranspose (mvcat (mtranspose xss) (mtranspose yss))
+
+mvcat :: [[a]] -> [[a]] -> [[a]]
+mvcat xss yss = 
+  assert (mncols xss == mncols yss) 
+  assert (mnrows result == mnrows xss + mnrows yss)  
+  assert (mncols result == mncols xss) result where
+  result = xss ++ yss
+
+mmeet :: (SR.Semiring a) => M a -> M a -> M a
+mmeet x y = matrix where
+  xr = mnrows x
+  xc = mncols x
+  yr = mnrows y
+  yc = mncols y
+  tr = mzeroes xr yc
+  bl = mzeroes yr xc
+  top = mhcat x tr
+  bottom = mhcat bl y
+  matrix = mvcat top bottom
 
 -- End ---------------------------------------------------------------

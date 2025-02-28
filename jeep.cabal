@@ -12,7 +12,15 @@ extra-doc-files:    CHANGELOG.md
 -- extra-source-files:
 
 common warnings
-    ghc-options: -Wall
+    ghc-options: 
+        -- -Wall
+        -fwarn-tabs
+        -- -fwarn-name-shadowing
+        -fwarn-incomplete-uni-patterns
+        -fwarn-incomplete-patterns
+        -fwarn-overlapping-patterns
+        -fwarn-incomplete-record-updates
+        -fwarn-orphans
 
 library
     import: warnings
@@ -50,14 +58,18 @@ library
 test-suite jeep-test
     import: warnings
     default-language: Haskell2010
-    -- other-modules:
+    other-modules:
+        TestLinearAlgebra
     -- other-extensions:
     type: exitcode-stdio-1.0
     hs-source-dirs: test
     main-is: Test.hs
     build-depends:
         base
+        , containers
+        , HUnit
         , jeep
+        , QuickCheck
 
 -- End ---------------------------------------------------------------
 

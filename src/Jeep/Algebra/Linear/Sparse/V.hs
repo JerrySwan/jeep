@@ -2,6 +2,8 @@ module Jeep.Algebra.Linear.Sparse.V where
 
 -----------------------------------
 
+import Control.Exception
+
 import qualified Data.Map as M
 
 -----------------------------------
@@ -16,6 +18,11 @@ type V ix s = M.Map ix s
 
 vtabulate :: Ord ix => [ix] -> (ix -> a) -> V ix a
 vtabulate ixs f = M.fromList $ (\i -> (i,f i)) <$> ixs
+
+vsparse :: Ord ix => [ix] -> [a] -> V ix a
+vsparse indices xs =
+  assert (length indices == length xs) 
+  M.fromList (zip indices xs)
 
 vdense :: V ix s -> [s]
 vdense m = snd <$> M.toList m
