@@ -65,20 +65,19 @@ fromLists :: Ord ix => [(ix,[(ix,s)])] -> M ix s
 fromLists xss = Mp.fromList $ (\(k,v) -> (k,Mp.fromList v)) <$> xss
 
 {-
-
-msparse :: Ord ix => [ix] -> [ix] -> [[a]] -> M ix a
-msparse rixs cixs xss = mtabulate rixs cixs f where
+project :: Ord ix => [ix] -> [ix] -> [[a]] -> M ix a
+project rixs cixs xss = mtabulate rixs cixs f where
   f i j = (xss !! ixi) !! ixj where 
     ixi = findIndex rixs i
     ixj = findIndex cixs j
-  assert (MD.isSquare xss)  
-  assert (length indices == length xss) 
-  Mp.fromList (zip indices m') where
-    m' = Mp.fromList . zip indices <$> xss
--}
+  -- assert (MD.isSquare xss)  
+  -- assert (length indices == length xss) 
+    -- m' = Mp.fromList . zip cixs <$> xss  
+    -- Mp.fromList (zip rixs m')
+-}    
 
-msparse :: [[a]] -> M Int a
-msparse m = mtabulate rixs cixs f where
+fromDense :: [[a]] -> M Int a
+fromDense m = mtabulate rixs cixs f where
   rixs = [0 .. MD.mnrows m-1]
   cixs = [0 .. MD.mnrows m-1]
   f i j = (m !! i) !! j
@@ -99,9 +98,8 @@ indicesDisjoint x y = rowIndicesDisjoint x y && colIndicesDisjoint x y
 
 mmeet :: (Ord ix, SR.Semiring a) => M ix a -> M ix a -> M ix a
 mmeet x y = assert (indicesDisjoint x y) $ undefined rixs' cixs' matrix where
-  indices = undefined -- orderedIndices x ++ orderedIndices y
-  rixs' = undefined
-  cixs' = undefined
+  rixs' = mrowindices x ++ mrowindices y
+  cixs' = mcolindices x ++ mcolindices y
   matrix = MD.mmeet (mdense x) (mdense y)
 
 -- ^ https://hackage.haskell.org/package/containers-0.7/docs/Data-Map-Lazy.html#v:union

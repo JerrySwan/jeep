@@ -28,7 +28,7 @@ genVS sz = f <$> genVD sz where
 genMS :: Arbitrary a => (Int,Int) -> Gen (MS.M Int a)
 genMS p@(r,c) = f <$> genMD p where
   n = max r c 
-  f xss = MS.msparse xss
+  f xss = MS.fromDense xss
 
 -----------------------------------
 
@@ -68,7 +68,7 @@ test_mmeet_dense = TestCase ( do
 
 test_mnrows_mncols_sparse :: Test
 test_mnrows_mncols_sparse = TestCase ( do
-    let m = MS.msparse [[1,2,3],[1,2,3]] 
+    let m = MS.fromDense [[1,2,3],[1,2,3]] 
     assertEqual "" (MS.mnrows m) 2
     assertEqual "" (MS.mncols m) 3
   )
@@ -76,11 +76,11 @@ test_mnrows_mncols_sparse = TestCase ( do
 test_mmeet_sparse :: Test
 test_mmeet_sparse = TestCase ( do
     let 
-      expected = MS.msparse [
+      expected = MS.fromDense [
         [1::Integer,0,0],
         [0,2,3]
           ] 
-    let actual = MS.mmeet (MS.msparse [[1]]) (MS.msparse [[2,3]]) 
+    let actual = MS.mmeet (MS.fromDense [[1]]) (MS.fromDense [[2,3]]) 
     assertEqual "" expected actual 
   )
 

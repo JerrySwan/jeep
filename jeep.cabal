@@ -34,7 +34,8 @@ library
         , Jeep.Control.Control        
         , Jeep.Control.Exception.Contract        
         , Jeep.Control.Monad.MonadRandom
-        , Jeep.Data.Foldable
+        , Jeep.Data.Bag
+        , Jeep.Data.Foldable        
         , Jeep.Data.Graph.FGL
         , Jeep.Data.List
         , Jeep.Learning.Metrics
