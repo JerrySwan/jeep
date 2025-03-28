@@ -12,6 +12,10 @@ rotate :: Int -> [a] -> [a]
 rotate n xs = take lxs . drop (n `mod` lxs) . cycle $ xs where
   lxs = length xs
 
+chunks :: Int -> [a] -> [[a]]
+chunks _ [] = []
+chunks n xs = let (ys, zs) = splitAt n xs in ys : chunks n zs
+
 minmax :: (Ord a) => [a] -> Maybe (a,a)
 minmax [] = Nothing
 minmax (x:xs) = Just $ foldl (\(mn,mx) a -> (min mn a,max mx a)) (x,x) xs
