@@ -6,10 +6,8 @@ import Data.Hex
 
 import Jeep.Data.List
 
-import qualified Data.ByteString               as B
--- import qualified Data.ByteString.Internal      as BI
-import qualified Data.ByteString.Lazy          as BL
--- import qualified Data.ByteString.Lazy.Internal as BLI
+import qualified Data.ByteString.Char8 as B
+import qualified Data.ByteString.Lazy.Char8 as BL
 
 -----------------------------------
 
