@@ -6,6 +6,18 @@ import Control.Monad.Random
 
 -----------------------------------
 
+{-
+
+Use the following from Control.Monad.Random.Class instead:
+
+uniformRandomIndex: (xs !!) <$> uniform [0.. length xs-1]
+
+uniformRandomElem: uniform
+
+weightedSelect: fromList/weighted
+
+-----------------------------------
+
 uniformRandomIndex :: (MonadRandom random) => [a] -> random Int
 uniformRandomIndex xs = getRandomR (0,length xs - 1)
 
@@ -19,6 +31,8 @@ weightedSelect xs fitness = do
   fs = fitness <$> xs
   xs' = zip xs (scanl1 (+) fs)
   sumScores = (snd . last) xs'
+
+-}
 
 -----------------------------------
 
