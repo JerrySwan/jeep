@@ -12,6 +12,14 @@ uniformRandomIndex xs = getRandomR (0,length xs - 1)
 uniformRandomElem :: (MonadRandom random) => [a] -> random a
 uniformRandomElem xs = (xs !!) <$> uniformRandomIndex xs
 
+weightedSelect :: MonadRandom m => [a] -> (a -> Double) -> m a
+weightedSelect xs fitness = do
+  rand <- (sumScores *) <$> getRandom
+  return $ (fst . head . dropWhile ((rand >) . snd)) xs' where
+  fs = fitness <$> xs
+  xs' = zip xs (scanl1 (+) fs)
+  sumScores = (snd . last) xs'
+
 -----------------------------------
 
 {----------------
