@@ -39,6 +39,7 @@ library
         , Jeep.Data.Foldable        
         , Jeep.Data.Graph.FGL
         , Jeep.Data.List
+        , Jeep.Debug        
         , Jeep.Learning.Metrics
         , Jeep.Learning.AIF        
         , Jeep.Logic
