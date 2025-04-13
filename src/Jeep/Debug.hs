@@ -24,7 +24,7 @@ here' callStackIndex = prettySrcLoc loc where
 here :: HasCallStack => String 
 here = here' 1 
 
-hereTrace :: HasCallStack => a -> a 
-hereTrace = trace (here' 1) 
+traceHere :: HasCallStack => a -> a 
+traceHere = trace (here' 1) 
 
 -- End ---------------------------------------------------------------
