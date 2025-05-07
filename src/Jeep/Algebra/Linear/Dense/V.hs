@@ -13,6 +13,9 @@ type V s = [s]
 vscale :: SR.Semiring s => s -> V s -> V s
 vscale c = map (SR.times c)
 
+vadd :: SR.Semiring s => V s -> V s -> V s
+vadd xs = zipWith (SR.+) xs
+
 vmul :: SR.Semiring s => V s -> V s -> s
 vmul xs = foldr SR.plus SR.zero . zipWith (SR.*) xs
 
