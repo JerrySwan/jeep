@@ -25,4 +25,9 @@ vmul xs = foldr SR.plus SR.zero . zipWith (SR.*) xs
 vnorm2 :: (SR.Semiring s, Floating s) => V s -> s
 vnorm2 v = sqrt (vmul v v)
 
+vsum :: (SR.Semiring s) => [V s] -> V s
+vsum [] = error "Don't know dimensionality of zero vector to return"
+vsum (x : []) = x
+vsum (x : xs) = vadd x $ vsum xs
+
 -- End ---------------------------------------------------------------
