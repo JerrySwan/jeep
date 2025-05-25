@@ -53,9 +53,12 @@ library
         base
         , bytestring        
         , containers
+        , dlist        
         , fgl
+        , fgl-visualize        
         , hex
         , MonadRandom
+        , mtl
         , process
         , semirings
     hs-source-dirs: src
