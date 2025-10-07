@@ -106,4 +106,9 @@ mmeet x y = matrix where
   bottom = mhcat bl y
   matrix = mvcat top bottom
 
+vandermonde :: Num a => V a -> M a
+vandermonde xs = [ [ entry (j,k) | j <- [0..n-1]] | k <- [0..n-1]] where
+  n = length xs
+  entry (j,k) = (xs !! j) ^ k
+
 -- End ---------------------------------------------------------------

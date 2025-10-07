@@ -5,6 +5,7 @@ module Jeep.Data.Graph.FGL where
 
 import Control.Arrow
 import Control.Exception
+import Control.Monad
 import Control.Monad.RWS
 
 import Data.DList (singleton, fromList, toList)

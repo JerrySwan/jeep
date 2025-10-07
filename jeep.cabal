@@ -48,6 +48,7 @@ library
         , Jeep.Numeric.Numeric
         , Jeep.Statistics.Statistics
         , Jeep.Test.QuickCheck
+        , Jeep.Text.WriteCSV
     -- other-modules:
     -- other-extensions:
     build-depends: 
