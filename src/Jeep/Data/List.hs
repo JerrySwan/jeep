@@ -1,6 +1,14 @@
+{-# LANGUAGE BangPatterns #-}
 module Jeep.Data.List where
 
 -----------------------------------
+
+count :: (a -> Bool) -> [a] -> Int
+count p = go 0 where 
+  go !n [] = n
+  go !n (x:xs) 
+    | p x = go (n+1) xs
+    | otherwise = go n xs
 
 replaceNth :: Int -> a -> [a] -> [a]
 replaceNth _ _ [] = []
