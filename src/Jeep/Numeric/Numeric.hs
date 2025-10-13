@@ -7,6 +7,12 @@ import Control.Exception
 
 -----------------------------------
 
+linspace :: Fractional b => Int -> b -> b -> [b]
+linspace n a b = map (\ i -> a + fromIntegral i * inc) [(0::Int) .. (n - 1)] where
+  inc = (b - a) / fromIntegral (n - 1)
+
+-----------------------------------
+
 {- linear interpolation -}
 lerp inputValue inputLimit1 inputLimit2 outputLimit1 outputLimit2 = 
   (assert $ implies (inputLimit1 <= inputLimit2) (inputLimit1 <= inputValue && inputValue <= inputLimit2) )
