@@ -15,6 +15,8 @@ runLengthEncode = map (\x -> (NEL.head x, length x)) . NEL.group
 runLengthEncodeBy :: (Foldable f, Eq a) => (a -> a -> Bool) -> f a -> [(a,Int)]
 runLengthEncodeBy eq = map (\x -> (NEL.head x, length x)) . NEL.groupBy eq
 
+-----------------------------------
+
 minimumOn :: (Foldable f, Ord b) => (a -> b) -> f a -> a
 minimumOn f = minimumBy (compare `on` f)
 

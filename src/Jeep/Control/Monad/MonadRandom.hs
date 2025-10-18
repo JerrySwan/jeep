@@ -50,6 +50,10 @@ elements :: MonadRandom m => [a] -> m a
 elements [] = error "MonadRandom.elements used with empty list"
 elements xs = (xs !!) `fmap` getRandomR (0, length xs - 1)
 
+elementsMay :: MonadRandom m => [a] -> m (Maybe a) 
+elementsMay [] = pure Nothing
+elementsMay xs = Just <$> (xs !!) `fmap` getRandomR (0, length xs - 1)
+
 frequency :: (Functor t, Foldable t, MonadRandom m) => t (Rational, m a) -> m a 
 frequency xs = do
   x <- (weighted . (fmap swap)) xs
