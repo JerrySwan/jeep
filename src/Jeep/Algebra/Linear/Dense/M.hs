@@ -83,7 +83,8 @@ mcirculant v = (\i -> rotate (-i) v)  <$> [0 .. (n-1)] where
 mhcat :: [[a]] -> [[a]] -> [[a]]
 mhcat xss yss = 
   assert (mnrows xss == mnrows yss) 
-  assert (mncols result == mncols xss + mnrows yss)  
+  -- assert (mncols result == mncols xss + mnrows yss)
+  assert (mncols result == mncols xss + mncols yss)  
   assert (mnrows result == mnrows xss) result where
   result = mtranspose (mvcat (mtranspose xss) (mtranspose yss))
 
